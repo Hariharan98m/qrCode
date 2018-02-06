@@ -50,7 +50,6 @@ def neg_mat(arr):
             else:
                 arr[i][j]=0
 
-['00100000', '01000001', '11001101', '01000101', '00101001', '11011100', '00101110', '10000000', '11101100', '00101010', '10011111', '01001010', '11011101', '11110100', '10101001', '11101111', '10010110', '10001010', '01000110', '11101101', '01010101', '11100000', '01100000', '01001010', '11011011', '00111101']
 
 
 
@@ -66,10 +65,8 @@ def move_up_n(i,j,word):
     while k<=7:
         if flag and k==4:
             i-=1
-        #print('k=',k)
         com_arr[i][j]=(int)(word[k])
         k+=1
-        #print('k=',k)
         com_arr[i][j-1]=(int)(word[k])
         k+=1
         i-=1
@@ -142,30 +139,18 @@ print('#for word 26')
 move_down_n(9,1,encodedWords[25])
 
 
-print(img_arr)
 
 print('comMatrix')
 print(com_arr)
-
-for i in range(21):
-    for j in range(21):
-        if com_arr[i][j]==img_arr[i][j]:
-            print('Value equal at:', i, j)
-        else:
-            print('Different at:', i, j)
-
-if com_arr==img_arr:
-    print('They are equal')
-else:
-    print('They are different')
 
 
 mask_pixel(com_arr)
 
 neg_mat(com_arr)
+
 img=Image.new('1',(21,21))
 pixels=img.load()
 for i in range(img.size[0]):
     for j in range(img.size[1]):
             pixels[i,j]=com_arr[i][j]
-img.save('C:\\Users\\HARIHARAN\\Desktop\\com_arr.png')
+img.save('C:\\Users\\HARIHARAN\\Desktop\\com_arr2.png')
