@@ -1,31 +1,6 @@
 from PIL import Image
 from numpy import*
 
-img_arr=[
-    [1,1,1,1,1,1,1,0,0,0,1,0,1,0,1,1,1,1,1,1,1],
-    [1,0,0,0,0,0,1,0,0,0,0,1,0,0,1,0,0,0,0,0,1],
-    [1,0,1,1,1,0,1,0,0,0,1,1,0,0,1,0,1,1,1,0,1],
-    [1,0,1,1,1,0,1,0,0,0,1,0,1,0,1,0,1,1,1,0,1],
-    [1,0,1,1,1,0,1,0,1,1,0,1,1,0,1,0,1,1,1,0,1],
-    [1,0,0,0,0,0,1,0,0,0,0,1,1,0,1,0,0,0,0,0,1],
-    [1,1,1,1,1,1,1,0,1,0,1,0,1,0,1,1,1,1,1,1,1],
-    [0,0,0,0,0,0,0,0,1,1,0,0,1,0,0,0,0,0,0,0,0],
-    [0,0,1,1,0,0,1,1,1,0,1,1,1,1,1,0,1,0,0,0,0],
-    [0,0,1,1,1,0,0,1,0,0,1,1,0,0,0,0,0,1,0,1,0],
-    [1,1,1,0,0,0,1,0,1,0,1,0,1,0,1,1,1,0,0,1,1],
-    [1,1,0,1,0,1,0,0,0,1,1,0,1,0,1,0,1,1,0,0,0],
-    [1,0,1,1,0,1,1,0,0,1,0,0,1,0,1,1,1,1,0,1,1],
-    [0,0,0,0,0,0,0,0,1,1,0,0,0,0,1,0,0,0,0,1,0],
-    [1,1,1,1,1,1,1,0,1,1,0,1,0,1,0,0,0,0,1,0,0],
-    [1,0,0,0,0,0,1,0,0,1,0,1,1,1,1,0,0,0,1,0,0],
-    [1,0,1,1,1,0,1,0,0,1,0,1,1,1,1,0,1,1,0,1,0],
-    [1,0,1,1,1,0,1,0,1,1,1,1,0,1,0,0,1,1,1,0,0],
-    [1,0,1,1,1,0,1,0,1,0,1,1,1,0,0,1,1,1,0,0,0],
-    [1,0,0,0,0,0,1,0,0,0,0,1,0,0,1,0,1,1,1,0,1],
-    [1,1,1,1,1,1,1,0,0,0,0,1,1,0,1,0,0,0,0,0,0],
-
-    ]
-
 def mask_pixel(arr):
     for i in range(21):
         for j in range(21):
@@ -37,10 +12,6 @@ def mask_pixel(arr):
                     else:
                         arr[i][j]=0
 
-
-mask_pixel(img_arr)
-print('img_arr')
-print(img_arr)
 
 
 
@@ -79,6 +50,7 @@ def neg_mat(arr):
             else:
                 arr[i][j]=0
 
+['00100000', '01000001', '11001101', '01000101', '00101001', '11011100', '00101110', '10000000', '11101100', '00101010', '10011111', '01001010', '11011101', '11110100', '10101001', '11101111', '10010110', '10001010', '01000110', '11101101', '01010101', '11100000', '01100000', '01001010', '11011011', '00111101']
 
 
 
@@ -94,11 +66,10 @@ def move_up_n(i,j,word):
     while k<=7:
         if flag and k==4:
             i-=1
-            continue
-        print('k=',k)
+        #print('k=',k)
         com_arr[i][j]=(int)(word[k])
         k+=1
-        print('k=',k)
+        #print('k=',k)
         com_arr[i][j-1]=(int)(word[k])
         k+=1
         i-=1
@@ -111,69 +82,87 @@ def move_down_n(i,j,word):
     while k<=7:
         if flag and k==4:
             i+=1
-            continue
         com_arr[i][j]=(int)(word[k])
         k+=1
         com_arr[i][j-1]=(int)(word[k])
         k+=1
         i+=1
 
-#for words 1,2 and 3- Move Up
+print('#for words 1,2 and 3- Move Up')
 i=20
 for k in range(3):
     move_up_n(i,20,encodedWords[k])
     i-=4
 
-#for words 4,5 and 6- Move Down
+print('#for words 4,5 and 6- Move Down')
 i=9
 for k in range(3,6):
     move_down_n(i,18,encodedWords[k])
     i+=4
 
 
-#for words 7,8 and 9- Move Up
+print('#for words 7,8 and 9- Move Up')
 i=20
 for k in range(6,9):
     move_up_n(i,16,encodedWords[k])
     i-=4
 
-#for words 10,11 and 12- Down
+print('#for words 10,11 and 12- Down')
 i=9
 for k in range(9,12):
     move_down_n(i,14,encodedWords[k])
     i+=4
 
-#for words 13,14, 15, 16 and 17- Move Up
+print('#for words 13,14, 15, 16 and 17- Move Up')
 i=20
 for k in range(12,17):
+    if(k==16):
+        i=3
     move_up_n(i,12,encodedWords[k])
     i-=4
     
-#for words 18,19,20,21,22 - Down
+print('#for words 18,19,20,21,22 - Down')
 i=0
 for k in range(17,22):
+    if(k==19):
+        i=9
     move_down_n(i,10,encodedWords[k])
     i+=4
 
-#for word 23
+print('#for word 23')
 move_up_n(12,8,encodedWords[22])
 
-#for word 24
+print('#for word 24')
 move_down_n(9,5,encodedWords[23])
 
-#for word 25
+print('#for word 25')
 move_up_n(12,3,encodedWords[24])
 
-#for word 26
+print('#for word 26')
 move_down_n(9,1,encodedWords[25])
 
-mask_pixel(com_arr)
+
+print(img_arr)
+
 print('comMatrix')
 print(com_arr)
 
+for i in range(21):
+    for j in range(21):
+        if com_arr[i][j]==img_arr[i][j]:
+            print('Value equal at:', i, j)
+        else:
+            print('Different at:', i, j)
+
+if com_arr==img_arr:
+    print('They are equal')
+else:
+    print('They are different')
+
+
+mask_pixel(com_arr)
+
 neg_mat(com_arr)
-
-
 img=Image.new('1',(21,21))
 pixels=img.load()
 for i in range(img.size[0]):
