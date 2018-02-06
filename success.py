@@ -1,5 +1,9 @@
 from PIL import Image
 from numpy import*
+import numpy as np
+import matplotlib.pyplot as plt
+import matplotlib.cm as cm
+
 
 def mask_pixel(arr):
     for i in range(21):
@@ -148,9 +152,4 @@ mask_pixel(com_arr)
 
 neg_mat(com_arr)
 
-img=Image.new('1',(21,21))
-pixels=img.load()
-for i in range(img.size[0]):
-    for j in range(img.size[1]):
-            pixels[i,j]=com_arr[i][j]
-img.save('C:\\Users\\HARIHARAN\\Desktop\\com_arr2.png')
+plt.imsave('C:\\Users\\HARIHARAN\\Desktop\\hari_img.png', np.array(com_arr).reshape(21, 21), cmap=cm.gray)
